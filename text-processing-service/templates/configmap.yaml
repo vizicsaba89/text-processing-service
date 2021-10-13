@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "text-processing-service.fullname" . }}-configmap
+  labels:
+    app: {{ template "text-processing-service.name" . }}
+    chart: {{ template "text-processing-service.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  application.yaml: |-
+    configuration:
+      api:
+        textApiUrl: https://loripsum.net/api/{0}/{1}
+      kafka:
+        topic: words.processed
+    spring:
+      kafka:
+        bootstrap-servers: betvictor-kafka-0.betvictor-kafka-headless.default.svc.cluster.local:9092
+        producer:
+          key-serializer: org.apache.kafka.common.serialization.StringSerializer
+          value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

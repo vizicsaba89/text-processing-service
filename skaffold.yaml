@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta13
+kind: Config
+build:
+  artifacts:
+  - image: docker.io/vizicsaba89/text-processing-service
+    jib: {}
+  tagPolicy:
+    sha256: {}
+deploy:
+  helm:
+    releases:
+    - name: text-processing-service
+      chartPath: text-processing-service
+      setValues:
+        image.pullPolicy: IfNotPresent
+      imageStrategy:
+          helm: {}
