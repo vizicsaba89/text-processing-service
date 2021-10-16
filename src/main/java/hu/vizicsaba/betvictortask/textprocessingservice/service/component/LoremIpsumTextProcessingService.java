@@ -46,11 +46,11 @@ public class LoremIpsumTextProcessingService implements TextProcessingService {
     }
 
     private Flux<String> getMatchedResultList(String textResponseData) {
-        List<String> matherResultList = PATTERN.matcher(textResponseData).results()
+        List<String> matchedResultList = PATTERN.matcher(textResponseData).results()
                 .map(result -> result.group(1))
                 .collect(Collectors.toList());
 
-        return Flux.fromIterable(matherResultList);
+        return Flux.fromIterable(matchedResultList);
     }
 
     private String replaceSpecialCharacters(String result) {
