@@ -8,7 +8,7 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
-  application.yaml: |-
+  application.yaml: |
     configuration:
       api:
         textApiUrl: https://loripsum.net/api/{0}/{1}

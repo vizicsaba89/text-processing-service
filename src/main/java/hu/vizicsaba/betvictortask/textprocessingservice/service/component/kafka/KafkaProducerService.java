@@ -19,7 +19,7 @@ public class KafkaProducerService {
 
     public void send(TextProcessResponse textProcessResponse) {
         reactiveKafkaProducerTemplate.send(topic, textProcessResponse)
-                .subscribe(result -> log.info(result.recordMetadata()));
+                .subscribe(result -> log.info("data: {}, exception: {}", result.recordMetadata(), result.exception()));
     }
 
 }

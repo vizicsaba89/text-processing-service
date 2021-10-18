@@ -11,5 +11,9 @@ spec:
       targetPort: 8080
       protocol: TCP
       name: http
+    - port: {{ .Values.service.debugport }}
+      targetPort: 8001
+      protocol: TCP
+      name: debug
   selector:
     {{- include "text-processing-service.selectorLabels" . | nindent 4 }}
