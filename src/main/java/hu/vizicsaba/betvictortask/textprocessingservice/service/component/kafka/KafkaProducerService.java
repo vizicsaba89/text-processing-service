@@ -1,7 +1,7 @@
 package hu.vizicsaba.betvictortask.textprocessingservice.service.component.kafka;
 
 import hu.vizicsaba.betvictortask.textprocessingservice.service.model.TextProcessResponse;
-import hu.vizicsaba.betvictortask.textprocessingservice.service.model.TextProcessResult;
+import hu.vizicsaba.betvictortask.textprocessingservice.service.model.kafka.TextProcessResult;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,12 +20,17 @@ public class KafkaProducerService {
 
     public void send(TextProcessResponse textProcessResponse) {
         reactiveKafkaProducerTemplate.send(topic, getTextProcessResult(textProcessResponse))
-                .doOnSuccess(senderResult -> log.info("sent {} offset : {}", textProcessResponse, senderResult.recordMetadata().offset()))
+                .doOnSuccess(senderResult -> log.info("Successfully sent {}, offset : {}", textProcessResponse, senderResult.recordMetadata().offset()))
                 .subscribe();
     }
 
     private TextProcessResult getTextProcessResult(TextProcessResponse textProcessResponse) {
-        return new TextProcessResult(textProcessResponse.getMostFrequentWord(), textProcessResponse.getAverageParagraphSize(), textProcessResponse.getAverageParagraphProcessingTime(), textProcessResponse.getTotalProcessingTime());
+        return new TextProcessResult(
+            textProcessResponse.getMostFrequentWord(),
+            textProcessResponse.getAverageParagraphSize(),
+            textProcessResponse.getAverageParagraphProcessingTime(),
+            textProcessResponse.getTotalProcessingTime()
+        );
     }
 
 }

@@ -18,9 +18,9 @@ public class TextProcessingController {
 
     @GetMapping(path = "/text", produces = { MediaType.APPLICATION_JSON_VALUE })
     public Mono<TextProcessResponse> getTextProcessResponse(
-        @RequestParam("p_start") Integer startNumberOfParagraphs,
-        @RequestParam("p_end") Integer endNumberOfParagraphs,
-        @RequestParam("avg_p_length") String averageLengthOfParagraph
+        @RequestParam(value = "p_start", defaultValue = "1") Integer startNumberOfParagraphs,
+        @RequestParam(value = "p_end", defaultValue = "1") Integer endNumberOfParagraphs,
+        @RequestParam(value = "avg_p_length", defaultValue = "long") String averageLengthOfParagraph
     ) {
         return textProcessingService.processText(
             new TextProcessRequest(startNumberOfParagraphs, endNumberOfParagraphs, averageLengthOfParagraph)

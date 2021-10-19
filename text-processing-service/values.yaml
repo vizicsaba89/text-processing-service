@@ -78,3 +78,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+configuration:
+  api:
+    textApiUrl: https://loripsum.net/api/{0}/{1}
+  kafka:
+    topic: words.processed

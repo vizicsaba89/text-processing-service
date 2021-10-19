@@ -14,7 +14,7 @@ public class TextProcessResponse {
     private String mostFrequentWord;
 
     @JsonProperty("avg_paragraph_size")
-    private Integer averageParagraphSize;
+    private Double averageParagraphSize;
 
     @JsonProperty("avg_paragraph_processing_time")
     private Double averageParagraphProcessingTime;

@@ -1,6 +1,6 @@
 spring:
   kafka:
-    bootstrap-servers: betvictor-kafka-0.betvictor-kafka-headless.default.svc.cluster.local:9092
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

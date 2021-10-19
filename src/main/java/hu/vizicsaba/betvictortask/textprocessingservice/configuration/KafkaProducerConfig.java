@@ -1,6 +1,6 @@
 package hu.vizicsaba.betvictortask.textprocessingservice.configuration;
 
-import hu.vizicsaba.betvictortask.textprocessingservice.service.model.TextProcessResult;
+import hu.vizicsaba.betvictortask.textprocessingservice.service.model.kafka.TextProcessResult;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

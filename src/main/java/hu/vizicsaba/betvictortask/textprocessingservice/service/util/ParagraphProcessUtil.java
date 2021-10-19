@@ -26,10 +26,10 @@ public class ParagraphProcessUtil {
         return Collections.max(mergedWordCountMap.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
-    public Integer getAverageParagraphSize(List<ParagraphProcessDetails> paragraphProcessDetailsList) {
+    public Double getAverageParagraphSize(List<ParagraphProcessDetails> paragraphProcessDetailsList) {
         return paragraphProcessDetailsList.stream()
                 .map(ParagraphProcessDetails::getParagraphSize)
-                .collect(Collectors.averagingInt(paragraphSize -> paragraphSize)).intValue();
+                .collect(Collectors.averagingDouble(paragraphSize -> paragraphSize));
     }
 
     public Double getAverageParagraphProcessingTime(List<ParagraphProcessDetails> paragraphProcessDetailsList) {
